@@ -11,44 +11,44 @@ const JWTStrategy = passportJwt.Strategy
 const ExtractJWT = passportJwt.ExtractJwt
 
 const initializePassport = () => {
-     passport.use('register', new LocalStrategy({
-         passReqToCallback: true,
-         usernameField: 'email'
-     }, async (req, username, password, done) => {
-         const { firstname, lastname, email } = req.body
-         try {
-             let user = await userManager.getUserBy({ email })
-             if (user) return done(null, false)
+    // passport.use('register', new LocalStrategy({
+    //     passReqToCallback: true,
+    //     usernameField: 'email'
+    // }, async (req, username, password, done) => {
+    //     const { firstname, lastname, email } = req.body
+    //     try {
+    //         let user = await userManager.getUserBy({ email })
+    //         if (user) return done(null, false)
 
-             let newUser = {
-                 firstname,
-                 lastname,
-                 email,
-                 password: createHash(password)
-             }
+    //         let newUser = {
+    //             firstname,
+    //             lastname,
+    //             email,
+    //             password: createHash(password)
+    //         }
 
-             let result = await userManager.createUser(newUser)
-             return done(null, result)
-         } catch (error) {
-             return done(error)
-         }
-     }))
+    //         let result = await userManager.createUser(newUser)
+    //         return done(null, result)
+    //     } catch (error) {
+    //         return done(error)
+    //     }
+    // }))
 
-     passport.use('login', new LocalStrategy({
-         usernameField: 'email'
-     }, async (username, password, done) => {
-         try {
-             const user = await userManager.getUserBy({ email: username })
-             if (!user) {
-                 console.log('Usuario no existe.');
-                 return done(null, false)
-             }
-             if (!isValidPassword(password, user.password)) return done(null, false)
-             return done(null, user)
-         } catch (error) {
-             return done(error)
-         }
-     }))
+    // passport.use('login', new LocalStrategy({
+    //     usernameField: 'email'
+    // }, async (username, password, done) => {
+    //     try {
+    //         const user = await userManager.getUserBy({ email: username })
+    //         if (!user) {
+    //             console.log('Usuario no existe.');
+    //             return done(null, false)
+    //         }
+    //         if (!isValidPassword(password, user.password)) return done(null, false)
+    //         return done(null, user)
+    //     } catch (error) {
+    //         return done(error)
+    //     }
+    // }))
 
     passport.serializeUser((user, done) => {
         done(null, user._id)
@@ -59,8 +59,8 @@ const initializePassport = () => {
     })
 
     passport.use('github', new GithubStrategy({
-        clientID: 'Iv1.545d12c63f15cb78',
-        clientSecret: 'ad7c627e6c0b315e3c82f0f91ff35427e3098c9f',
+        clientID: 'Iv1.140185b3c94b3ff5',
+        clientSecret: '81e942dcd33b01671880fd4f96d9211110b669ad',
         callbackURL: 'http://localhost:8080/api/sessions/githubcallback'
     }, async (accesToken, refreshToken, profile, done) => {
         console.log(profile);
