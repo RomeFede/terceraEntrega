@@ -85,7 +85,7 @@ class CartController {
                 
                 
 
-                const to = 'federico.romero@neotel.us'
+                const to = 'fedecuervito123@gmail.com'
                 const subject = '¡Tu compra fue confirmada!'
                 const html = `
                                 <h1>Tu compra Fue confirmada!</h1>
