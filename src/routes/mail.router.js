@@ -39,7 +39,7 @@ const generateUser = () => {
 router
     .get('/mail', (req, res) => {
 
-        const to = 'federico.romero@neotel.us'
+        const to = 'fedecuervito123@gmail.com'
         const subject = 'Email de prueba'
         const html = '<div><h1>Es es un email de prueba</h1></div>'
 
